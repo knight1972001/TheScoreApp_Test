@@ -24,8 +24,8 @@ hs_err_pid*
 replay_pid*
 
 # project
-/gradle/
-/build/
-/lib/
-/.idea/
+.gradle/
+build/
+lib/
+.idea/
 
