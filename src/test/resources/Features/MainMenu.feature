@@ -1,8 +1,8 @@
 @smoke_thescore
 Feature: Verify League, Team, or Player Data in theScore App
 
-  Background: User need to go to Main Menu Page from Get Started Page
-    Given User have the theScore app installed and opened
+  Background: User have the theScore app installed and opened, go through all pop up pages to Main Page
+    Given Check if theScore app is installed correcly
     When Tap on Get Started to open favorite leagues page
     Then favorite leagues page open corectly
     When Select first 2 leagues

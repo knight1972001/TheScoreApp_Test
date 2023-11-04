@@ -55,6 +55,11 @@ open class DriverClass() {
         driver.quit();
     }
 
+    fun checkingInstalledApp(): Boolean {
+        // Check if the app is installed
+        return driver.isAppInstalled("com.fivemobile.thescore")
+    }
+
     fun isVisibleById(id: String): Boolean {
         return try {
             wait.until { driver ->

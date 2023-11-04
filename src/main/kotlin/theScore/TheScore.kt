@@ -9,11 +9,13 @@ open class TheScore : DriverClass() {
         get() = Logger.getLogger(TheScore::class.java.name)
 
     fun verifySelectedSubtab(tab: String): Boolean{
+        log.info("Verifying selected sub tab $tab")
         val tabXpath = "//android.widget.LinearLayout[@content-desc=\""+tab+"\"]"
         return findByXpath(tabXpath).isSelected
     }
 
     fun selectSubtab(tab: String): Boolean {
+        log.info("Selected sub tab $tab")
         val tabXpath = "//android.widget.LinearLayout[@content-desc=\""+tab+"\"]"
         return if (isVisibleByXpath(tabXpath)){
             clickByXpath(tabXpath)
@@ -23,6 +25,7 @@ open class TheScore : DriverClass() {
     }
 
     fun verifyWelcomePage(): Boolean {
+        log.info("Verifying Welcome page")
         return if (isVisibleById("com.fivemobile.thescore:id/txt_welcome")) {
             CheckAssert.assertTrue(
                 "WELCOME",
@@ -34,10 +37,12 @@ open class TheScore : DriverClass() {
     }
 
     fun clickLeagues(): Boolean {
+        log.info("Click to Leagues tab")
         return clickByXpath("//android.widget.TextView[@resource-id=\"com.fivemobile.thescore:id/navigation_bar_item_small_label_view\" and @text=\"Leagues\"]")
     }
 
     fun selectLeagues(leagues: String): Boolean {
+        log.info("Select leagues $leagues")
         val leaguesXpath = "//android.widget.TextView[@resource-id=\"com.fivemobile.thescore:id/league_name_text\" and @text=\""+leagues+"\"]"
         return if (isVisibleByXpath(leaguesXpath)){
             clickByXpath(leaguesXpath)
@@ -49,6 +54,7 @@ open class TheScore : DriverClass() {
     }
 
     fun verifySelectedLeagues(league: String): Boolean {
+        log.info("Verifying selected $league leagues")
         if (isVisibleById("com.fivemobile.thescore:id/titleTextView")){
             return CheckAssert.assertTrue(league, findById("com.fivemobile.thescore:id/titleTextView").text)
         }else{
@@ -123,10 +129,12 @@ open class TheScore : DriverClass() {
     }
 
     fun clickOnContinueButton(): Boolean {
+        log.info("Click on Continue button")
         return clickById("com.fivemobile.thescore:id/action_button_text")
     }
 
     fun selectFavoriteLeagues(): Boolean {
+        log.info("Select Favorite leagues")
         return if (isVisibleById("com.fivemobile.thescore:id/recyclerView")) {
             val items = getItemsArrayFromRecyclerViewById("com.fivemobile.thescore:id/recyclerView")
             var count = 0
@@ -144,6 +152,7 @@ open class TheScore : DriverClass() {
     }
 
     fun selectFavoriteTeams(): Boolean {
+        log.info("Select Favorite Teams")
         return if (isVisibleById("com.fivemobile.thescore:id/recyclerView")) {
             val items = getItemsArrayFromRecyclerViewById("com.fivemobile.thescore:id/recyclerView")
             var count = 0
@@ -161,22 +170,27 @@ open class TheScore : DriverClass() {
     }
 
     fun denyLocationPermissionPopup():Boolean {
+        log.info("Deny Location Permission pop up")
         return clickById("com.fivemobile.thescore:id/btn_disallow")
     }
 
     fun denyNotificationsPopUp():Boolean {
+        log.info("Deny Notification Pop Up")
         return clickById("com.android.permissioncontroller:id/permission_deny_button")
     }
 
     fun closeScoreBetPopUp(): Boolean {
+        log.info("Close Score Bet Pop up")
         return clickById("com.fivemobile.thescore:id/dismiss_modal")
     }
 
     fun isLocationPermissionPopUpShowUp(): Boolean {
+        log.info("Check if Location permission pop up show up")
         return isVisibleById("com.fivemobile.thescore:id/location_title")
     }
 
     fun isNotificationPopUpShowUp(): Boolean {
+        log.info("Check if notification pop up show up")
         // Check if popup notifications show up
         if (isVisibleById("com.android.permissioncontroller:id/permission_message")) {
             log.info("notifications popup show up")
@@ -188,6 +202,7 @@ open class TheScore : DriverClass() {
     }
 
     fun isScoreBetPopUpShowUp(): Boolean {
+        log.info("Check if Score Bet Popup show up")
         if (isVisibleById("com.fivemobile.thescore:id/subtitle_text")) {
             log.info("theScore BET show up")
             return true
@@ -197,53 +212,57 @@ open class TheScore : DriverClass() {
         }
     }
 
-    fun `Navigate from getStarted to Choose your favourite leagues`(): Boolean {
-        log.info("navigate from getStarted to Choose your favourite leagues")
-        if (verifyWelcomePage()) {
-            if (clickById("com.fivemobile.thescore:id/action_button_text")) {
-                if (`verify Choose your favourite leagues page`()) {
-                    return true
-                }
-            }
-        }
-        return false;
-    }
+    // Testing navigate from Get Started to Choose your favourite leagues
+//    fun `Navigate from getStarted to Choose your favourite leagues`(): Boolean {
+//        log.info("navigate from getStarted to Choose your favourite leagues")
+//        if (verifyWelcomePage()) {
+//            if (clickById("com.fivemobile.thescore:id/action_button_text")) {
+//                if (`verify Choose your favourite leagues page`()) {
+//                    return true
+//                }
+//            }
+//        }
+//        return false;
+//    }
 
-    fun `Navigate from Favourite Leagues to favourite teams`(): Boolean {
-        log.info("Navigate from Favourite Leagues to favourite teams")
-        if (`verify Choose your favourite leagues page`()) {
-            if (selectFavoriteLeagues()) {
-                if (isLocationPermissionPopUpShowUp()) {
-                    denyLocationPermissionPopup()
-                }
-                return verifyFavoritesTeamsPage()
-            }
-        }
-        return false
-    }
+    //testing Navigate from Favourite Leagues to favourite teams
+//    fun `Navigate from Favourite Leagues to favourite teams`(): Boolean {
+//        log.info("Navigate from Favourite Leagues to favourite teams")
+//        if (`verify Choose your favourite leagues page`()) {
+//            if (selectFavoriteLeagues()) {
+//                if (isLocationPermissionPopUpShowUp()) {
+//                    denyLocationPermissionPopup()
+//                }
+//                return verifyFavoritesTeamsPage()
+//            }
+//        }
+//        return false
+//    }
 
     fun tapOnDone(): Boolean {
+        log.info("Tap on Done button")
         return clickById("com.fivemobile.thescore:id/action_button_text")
     }
 
-    fun `Navigate from Favorite Teams To Main Menu`(): Boolean {
-        log.info("Navigate from Favorite Teams To Main Menu")
-        if (verifyFavoritesTeamsPage()) {
-            if (selectFavoriteTeams()) {
-                if (verifySettingPage()) {
-                    clickById("com.fivemobile.thescore:id/action_button_text")
-                    if (isNotificationPopUpShowUp()) {
-                        denyNotificationsPopUp()
-                        if (isScoreBetPopUpShowUp()) {
-                            closeScoreBetPopUp()
-                            return verifyMainMenuPage()
-                        }
-                    }
-                }
-            }
-        }
-        return false
-    }
+    // Test Navigate from Favorite Teams To Main Menu
+//    fun `Navigate from Favorite Teams To Main Menu`(): Boolean {
+//        log.info("Navigate from Favorite Teams To Main Menu")
+//        if (verifyFavoritesTeamsPage()) {
+//            if (selectFavoriteTeams()) {
+//                if (verifySettingPage()) {
+//                    clickById("com.fivemobile.thescore:id/action_button_text")
+//                    if (isNotificationPopUpShowUp()) {
+//                        denyNotificationsPopUp()
+//                        if (isScoreBetPopUpShowUp()) {
+//                            closeScoreBetPopUp()
+//                            return verifyMainMenuPage()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return false
+//    }
 
     fun openLeague(league: String): Boolean {
         log.info("Open League Test: ")
@@ -317,21 +336,28 @@ open class TheScore : DriverClass() {
     }
 
     fun clickOnBackNavigate(): Boolean{
+        log.info("Click on Back Navigate")
         return clickByAccessibilityId("Navigate up")
     }
 
     fun clickOnEdit(): Boolean{
+        log.info("Click on Edit")
         return clickById("com.fivemobile.thescore:id/header_right_text")
     }
 
     fun clickOnDoneToCloseEdit(): Boolean{
+        log.info("Click on Done")
         return clickById("com.fivemobile.thescore:id/header_right_text")
     }
 
     fun doubleClickOnEditToAvoidPopup(): Boolean{
+        log.info("Double click on Edit/Done to avoid pop up")
         if(clickOnEdit() && clickOnDoneToCloseEdit()){
             return true
         }
         return false
+    }
+    fun checkingTheScoreAppInstalled(): Boolean{
+        return checkingInstalledApp()
     }
 }

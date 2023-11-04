@@ -4,6 +4,7 @@ The Sport Android platform
 ## Getting started
 ### Prerequisites
 Please make sure you have installed [Appium1.22.3](https://appium.io/docs/en/2.1/quickstart/install/) and [Java 11 SDK](https://www.oracle.com/ca-en/java/technologies/javase/jdk11-archive-downloads.html).
+I don't have a Linux/MacOS device so this setup and the commands will be Windows based commands
 
 ### IDE
 I am using [IntelliJ IDE](https://www.jetbrains.com/idea/download/) and some plugins like [Cucumber for Java](https://plugins.jetbrains.com/plugin/7212-cucumber-for-java) and [Gherkin](https://plugins.jetbrains.com/plugin/9164-gherkin). In addition, I also use **Prettier+** and **Dracula Theme** for the best visualization.
@@ -15,11 +16,14 @@ You need [emulator](https://developer.android.com/tools) or a real device using 
 - Setting up PATH in [Edit the system environment variables](https://stackoverflow.com/questions/23042638/how-do-i-set-android-sdk-home-environment-variable). In my case, I set it as `ANDROID_HOME`
 
 ### Project setup
-- Clone the project ``
+- Clone the project `git clone https://github.com/knight1972001/TheScoreApp_Test.git`
+```bash
+cd TheScoreApp_Test
+```
 - Import the project into IntelliJ using `build.gradle.kt`
 - Ready [The Score Apk file](https://apkpure.com/thescore-sports-news-scores/com.fivemobile.thescore) from [Apkpure](https://m.apkpure.com/) or any source you prefer.
 
-#### How to Launch an Emulator? {#emulator}
+#### How to Launch an Emulator?
 - Running emulator through Terminal
 ```bash
 cd "$env:ANDROID_HOME"
@@ -37,7 +41,7 @@ For example
 ```
 
 #### Running Test
-- Make sure your emulator is ready. How {#emulator}
+- Make sure your emulator is ready
 - Run Appium Server
 - Launch IntelliJ, Open _Run/Debug Configurations_
 - Select the module whose classpath: `theScore.test`
@@ -51,6 +55,12 @@ For example
 
 #### Human readable test specification
 - The test using [Cucumber](https://cucumber.io/) focuses on defining and testing the behaviour of an application from a user's perspective
+
+#### How's my test and codes are organizes?
+- The features file can be found in `src/test/resources/Features/MainMenu.feature` where we store Cucumber's Plain English text explaining the testing steps.
+- The steps file call functions from `src/test/kotlin/TheScoreTest/TheScoreStep.kt` where I store all the locators, codes,... etc
+- The actual codes behind these plain English texts step file call function from `src/main/kotlin/TheScore/TheScore.kt` files where I store the pre-defined codes of these steps in The Score App
+- The driver file can be found in `src/main/kotlin/utils/DriverClass` where I store driver setup and helper function like _clickById_, _findById_, _findByXpath_, etc
 
 #### Test result
 Test result automatic generated through **_./target/cucumber-reports/report.html_**

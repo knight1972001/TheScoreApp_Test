@@ -18,9 +18,9 @@ class TheScoreStep {
     private val theScore: TheScore = TheScore()
 
     //SCENARIO 1
-    @Given("User have the theScore app installed and opened")
+    @Given("Check if theScore app is installed correcly")
     fun setUpNew() {
-        log.info("Setup")
+        CheckAssert.assertTrueFailure("The Score app is not installed correctly", theScore.checkingTheScoreAppInstalled())
     }
 
     @When("Tap on Get Started to open favorite leagues page")
