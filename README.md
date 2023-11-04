@@ -54,7 +54,7 @@ For example
   ` ./gradlew cucumber`
 
 #### Human readable test specification
-- The test using [Cucumber](https://cucumber.io/) focuses on defining and testing the behaviour of an application from a user's perspective
+- The test using [Cucumber](https://cucumber.io/) focuses on defining and testing the behaviour - (BDD - behaviour driven development testing) of an application from a user's perspective
 
 #### How are my tests and codes organized?
 - The features file can be found in `src/test/resources/Features/MainMenu.feature` where I store Cucumber's Plain English text explaining the testing steps.
