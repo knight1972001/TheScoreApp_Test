@@ -49,8 +49,9 @@ For example
 - Select Apply -> Ok.
 - Run the Test.
 
-##### Or
-- [Gradle Test](https://docs.gradle.org/current/userguide/custom_tasks.html)
+##### Or [Gradle Test](https://docs.gradle.org/current/userguide/custom_tasks.html)
+- Clone project
+- [Gradle Test](https://docs.gradle.org/current/userguide/custom_tasks.html) using
   ` ./gradlew cucumber`
 
 #### Human readable test specification
@@ -72,3 +73,15 @@ Test result automatic generated through **_./target/cucumber-reports/report.html
 
 [Video automate test run](https://youtu.be/_Urv78OKnf8)
 
+
+#### Troubleshooting
+- Gradle Wrapper Error:
+
+`Error: Could not find or load main class org.gradle.wrapper.GradleWrapperMain
+Caused by: java.lang.ClassNotFoundException: org.gradle.wrapper.GradleWrapperMain`
+
+This error is caused by indicates that there is an issue with finding or loading the main class. To avoid this error, make sure Gradle Wrapper is Present using `gradle wrapper`
+
+- Running on Jenkins:
+  - To run the Test on Jenkins, we need to launch Appium server and Emulator.
+  - setup Jenkins that clone project and run tests using `gradlew cucumberCLI`

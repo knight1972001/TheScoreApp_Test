@@ -14,7 +14,7 @@ import java.util.logging.Logger
 
 open class DriverClass() {
     private lateinit var driver: AndroidDriver
-    private lateinit var wait: WebDriverWait
+    private var wait: WebDriverWait
 
     private val log: Logger
         get() = Logger.getLogger(DriverClass::class.java.name)
