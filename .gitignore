@@ -28,4 +28,5 @@ replay_pid*
 build/
 lib/
 .idea/
+bin/
 

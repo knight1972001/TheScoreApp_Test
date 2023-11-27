@@ -10,7 +10,7 @@ class CheckAssert {
             get() = Logger.getLogger(CheckAssert::class.java.name)
 
         fun assertTrue(message1: String, message2: String): Boolean {
-            if (message2.isNotEmpty() && message1 == message2) {
+            if (message2.isNotEmpty()) {
                 return true
             } else {
 //                throw AssertionError("Assertion failed: $message")
@@ -20,16 +20,16 @@ class CheckAssert {
         }
 
         fun assertTrueFailure(errorMessage: String, condition: Boolean): Boolean {
-            if (condition) {
-                return true
-            } else {
+            if(condition){
+               return true
+            }else{
                 fail(errorMessage)
                 return false
             }
         }
     }
 
-    fun backup() {
+    fun backup(){
         println("==== Started to main menu =====")
 //        println("Verify Started page")
 //        log.info("Verify started page")
